@@ -863,7 +863,7 @@
             content.className = 'message-content';
             
             if (isLoading) {
-                content.innerHTML = '<span class="loading-spinner"></span> Processing';
+                content.innerHTML = '<span class="loading-spinner"></span> Processing( Please wait )';
             } else {
                 let formattedText = escapeHtml(text);
                 formattedText = formattedText.replace(/\n/g, '<br>');
