@@ -1,8 +1,37 @@
-# requirements.txt
-fastapi==0.104.1
-uvicorn==0.24.0
-python-multipart==0.0.6
+# Core Web Framework
+Flask==2.3.3
+flask-cors==4.0.0
+gunicorn==21.2.0
+
+# Mistral AI Libraries (Main APIs)
+mistralai==1.0.3
+mistral-common==0.0.3
+
+# PDF Processing
 pypdf==3.17.4
-nltk==3.8.1
-scikit-learn==1.3.2
+pdfplumber==0.10.3
+
+# AI & Machine Learning
+sentence-transformers==2.2.2
+torch==2.0.1
+transformers==4.36.2
+
+# Graph & Community Detection
+networkx==3.1
+scikit-learn==1.3.0
 numpy==1.24.3
+scipy==1.11.4
+
+# API & HTTP Requests
+requests==2.31.0
+httpx==0.25.2
+
+# Utilities
+python-dotenv==1.0.0
+click==8.1.7
+tiktoken==0.5.1
+
+# Production Server
+waitress==2.1.2
+eventlet==0.33.3
+BNcoAYZYVY5wLAuYrdMYX1bjaRNcAauI
