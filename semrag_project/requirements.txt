@@ -5,9 +5,7 @@ networkx
 numpy
 pandas
 scikit-learn
-sentence-transformers
-transformers
-torch
+
 requests
 gunicorn
 python-dotenv
