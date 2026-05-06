@@ -1,7 +1,13 @@
 flask
-gunicorn
-mistralai
-faiss-cpu
-sentence-transformers
+flask-cors
+pypdf
+networkx
 numpy
 pandas
+scikit-learn
+sentence-transformers
+transformers
+torch
+requests
+gunicorn
+python-dotenv
