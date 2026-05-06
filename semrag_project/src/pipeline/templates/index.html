@@ -3,18 +3,39 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-    <title>Multi-Model RAG System | Legal • Medical • Disaster</title>
+    <title>Nexus RAG | Multi-Domain Intelligence Platform</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+        :root {
+            /* Light Mode Variables */
+            --bg-primary: #ffffff;
+            --bg-secondary: #f8f9fa;
+            --bg-tertiary: #f1f3f5;
+            --bg-sidebar: #ffffff;
+            --bg-card: #ffffff;
+            --text-primary: #1a1a2e;
+            --text-secondary: #4a5568;
+            --text-tertiary: #718096;
+            --border-color: #e2e8f0;
+            --accent-legal: #2d3748;
+            --accent-medical: #22543d;
+            --accent-disaster: #9b2c2c;
+            --accent-all: #6b46c1;
+            --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+            --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            --gradient-legal: linear-gradient(135deg, #2d3748 0%, #1a202c 100%);
+            --gradient-medical: linear-gradient(135deg, #22543d 0%, #1a3c2a 100%);
+            --gradient-disaster: linear-gradient(135deg, #9b2c2c 0%, #742a2a 100%);
+            --gradient-all: linear-gradient(135deg, #6b46c1 0%, #553c9a 100%);
+            --input-bg: #ffffff;
+            --hover-bg: #f7fafc;
         }
 
-        :root {
+        [data-theme="dark"] {
             --bg-primary: #0a0a0a;
             --bg-secondary: #141414;
             --bg-tertiary: #1a1a1a;
+            --bg-sidebar: #0f0f0f;
             --bg-card: #141414;
             --text-primary: #f7fafc;
             --text-secondary: #cbd5e0;
@@ -26,18 +47,24 @@
             --accent-all: #b794f4;
             --input-bg: #1a1a1a;
             --hover-bg: #1f1f1f;
-            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.3);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
 
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Inter', sans-serif;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
             background: var(--bg-primary);
             color: var(--text-primary);
             height: 100vh;
             overflow: hidden;
+            transition: background-color 0.3s ease, color 0.3s ease;
         }
 
-        /* Premium Scrollbar */
+        /* Custom Scrollbar */
         ::-webkit-scrollbar {
             width: 6px;
             height: 6px;
@@ -52,6 +79,10 @@
             border-radius: 3px;
         }
 
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--text-secondary);
+        }
+
         /* App Container */
         .app-container {
             display: flex;
@@ -61,39 +92,71 @@
 
         /* Sidebar */
         .sidebar {
-            width: 300px;
-            background: var(--bg-secondary);
+            width: 320px;
+            background: var(--bg-sidebar);
             border-right: 1px solid var(--border-color);
             display: flex;
             flex-direction: column;
-            transition: transform 0.3s ease;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             position: relative;
             z-index: 10;
         }
 
+        /* Sidebar Header */
         .sidebar-header {
-            padding: 24px 20px;
+            padding: 28px 24px;
             border-bottom: 1px solid var(--border-color);
+            background: var(--bg-sidebar);
         }
 
         .logo {
-            font-size: 1.3rem;
-            font-weight: 600;
-            background: linear-gradient(135deg, #fff 0%, #a0aec0 100%);
+            font-size: 1.5rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--text-primary) 0%, var(--text-secondary) 100%);
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
-            margin-bottom: 4px;
+            margin-bottom: 6px;
+            letter-spacing: -0.02em;
         }
 
         .tagline {
             font-size: 0.7rem;
             color: var(--text-tertiary);
+            letter-spacing: 0.03em;
+            text-transform: uppercase;
         }
 
-        /* System Selector */
+        /* Theme Toggle */
+        .theme-toggle {
+            position: absolute;
+            top: 24px;
+            right: 24px;
+            width: 40px;
+            height: 40px;
+            border-radius: 12px;
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border-color);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            z-index: 20;
+        }
+
+        .theme-toggle:hover {
+            transform: scale(1.05);
+            background: var(--hover-bg);
+        }
+
+        .theme-icon {
+            font-size: 1.2rem;
+        }
+
+        /* System Dropdown */
         .system-section {
-            padding: 20px;
+            padding: 24px;
             border-bottom: 1px solid var(--border-color);
         }
 
@@ -106,60 +169,42 @@
             margin-bottom: 12px;
         }
 
-        .system-buttons {
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
-        }
-
-        .system-btn {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            padding: 12px;
-            background: var(--bg-tertiary);
+        .system-select {
+            width: 100%;
+            padding: 12px 16px;
+            background: var(--input-bg);
             border: 1px solid var(--border-color);
-            border-radius: 10px;
+            border-radius: 12px;
+            font-size: 0.875rem;
+            color: var(--text-primary);
             cursor: pointer;
             transition: all 0.2s ease;
+            font-family: inherit;
         }
 
-        .system-btn:hover {
-            background: var(--hover-bg);
-            transform: translateX(4px);
+        .system-select:hover {
+            border-color: var(--text-tertiary);
         }
 
-        .system-btn.active {
+        .system-select:focus {
+            outline: none;
+            border-color: var(--accent-legal);
+        }
+
+        .system-info-card {
+            margin-top: 14px;
+            padding: 14px;
+            background: var(--bg-tertiary);
+            border-radius: 12px;
             border-left: 3px solid;
-            background: var(--hover-bg);
+            font-size: 0.75rem;
+            line-height: 1.5;
+            color: var(--text-secondary);
         }
-
-        .system-emoji {
-            font-size: 1.3rem;
-        }
-
-        .system-info {
-            flex: 1;
-        }
-
-        .system-name {
-            font-size: 0.85rem;
-            font-weight: 500;
-        }
-
-        .system-desc {
-            font-size: 0.7rem;
-            color: var(--text-tertiary);
-        }
-
-        .legal-btn.active { border-left-color: var(--accent-legal); }
-        .medical-btn.active { border-left-color: var(--accent-medical); }
-        .disaster-btn.active { border-left-color: var(--accent-disaster); }
-        .all-btn.active { border-left-color: var(--accent-all); }
 
         /* Chat Sessions */
         .sessions-header {
-            padding: 16px 20px;
+            padding: 20px 24px 12px 24px;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -169,6 +214,7 @@
             font-size: 0.7rem;
             font-weight: 600;
             text-transform: uppercase;
+            letter-spacing: 0.05em;
             color: var(--text-tertiary);
         }
 
@@ -181,44 +227,64 @@
             font-weight: 500;
             color: var(--text-primary);
             cursor: pointer;
-            transition: all 0.2s;
+            transition: all 0.2s ease;
         }
 
         .new-chat-btn:hover {
             background: var(--hover-bg);
+            transform: translateY(-1px);
         }
 
         .sessions-list {
             flex: 1;
             overflow-y: auto;
-            padding: 8px 12px;
+            padding: 8px 16px 24px 16px;
         }
 
         .session-item {
-            padding: 12px;
+            padding: 14px;
             margin-bottom: 8px;
-            background: var(--bg-tertiary);
+            background: var(--bg-card);
             border: 1px solid var(--border-color);
-            border-radius: 10px;
+            border-radius: 12px;
             cursor: pointer;
-            transition: all 0.2s;
+            transition: all 0.2s ease;
         }
 
         .session-item:hover {
+            transform: translateX(4px);
+            border-color: var(--text-tertiary);
             background: var(--hover-bg);
-            transform: translateX(2px);
         }
 
         .session-item.active {
             border-left: 3px solid;
+            background: var(--hover-bg);
         }
 
         .session-title {
-            font-size: 0.8rem;
+            font-size: 0.875rem;
             font-weight: 500;
-            margin-bottom: 4px;
+            margin-bottom: 6px;
             display: flex;
             justify-content: space-between;
+            align-items: center;
+        }
+
+        .delete-session {
+            color: var(--text-tertiary);
+            cursor: pointer;
+            font-size: 1.1rem;
+            opacity: 0;
+            transition: opacity 0.2s ease;
+        }
+
+        .session-item:hover .delete-session {
+            opacity: 1;
+        }
+
+        .delete-session:hover {
+            color: #e53e3e;
         }
 
         .session-preview {
@@ -227,69 +293,83 @@
             overflow: hidden;
             text-overflow: ellipsis;
             white-space: nowrap;
+            margin-bottom: 6px;
         }
 
-        .delete-session {
+        .session-time {
+            font-size: 0.65rem;
             color: var(--text-tertiary);
-            cursor: pointer;
-            opacity: 0;
-            transition: opacity 0.2s;
+            opacity: 0.7;
         }
 
-        .session-item:hover .delete-session {
-            opacity: 1;
-        }
-
-        /* Main Chat */
+        /* Main Chat Area */
         .main-chat {
             flex: 1;
             display: flex;
             flex-direction: column;
             background: var(--bg-primary);
+            position: relative;
         }
 
+        /* Chat Header */
         .chat-header {
-            padding: 16px 24px;
+            padding: 20px 32px;
             border-bottom: 1px solid var(--border-color);
             display: flex;
             justify-content: space-between;
             align-items: center;
+            background: var(--bg-primary);
         }
 
-        .chat-title {
-            font-size: 1rem;
+        .current-system {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .system-indicator {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+        }
+
+        .system-indicator.legal { background: var(--accent-legal); }
+        .system-indicator.medical { background: var(--accent-medical); }
+        .system-indicator.disaster { background: var(--accent-disaster); }
+        .system-indicator.all { background: var(--accent-all); }
+
+        .system-name {
+            font-size: 0.9rem;
             font-weight: 500;
         }
 
-        .status-badge {
-            padding: 4px 12px;
-            background: var(--bg-tertiary);
-            border-radius: 20px;
-            font-size: 0.7rem;
-        }
-
+        /* Status Bar */
         .status-bar {
-            padding: 8px 24px;
+            padding: 12px 32px;
             background: var(--bg-secondary);
             border-bottom: 1px solid var(--border-color);
             display: flex;
             justify-content: space-between;
-            font-size: 0.7rem;
-            color: var(--text-tertiary);
+            align-items: center;
+            font-size: 0.75rem;
+        }
+
+        .status-indicator {
+            display: flex;
+            align-items: center;
+            gap: 8px;
         }
 
         .status-dot {
-            display: inline-block;
             width: 8px;
             height: 8px;
             border-radius: 50%;
             background: #48bb78;
-            margin-right: 8px;
         }
 
         .status-dot.loading {
             background: #ed8936;
-            animation: pulse 1s infinite;
+            animation: pulse 1.5s infinite;
         }
 
         @keyframes pulse {
@@ -297,21 +377,42 @@
             50% { opacity: 0.5; }
         }
 
+        /* Context Indicator */
+        .context-indicator {
+            margin: 16px 32px 0 32px;
+            padding: 10px 16px;
+            background: var(--bg-secondary);
+            border-radius: 10px;
+            font-size: 0.7rem;
+            color: var(--text-tertiary);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            border: 1px solid var(--border-color);
+        }
+
+        /* Chat Messages */
         .chat-area {
             flex: 1;
             overflow-y: auto;
-            padding: 24px;
+            padding: 24px 32px;
         }
 
         .message {
-            margin-bottom: 20px;
+            margin-bottom: 24px;
             display: flex;
-            animation: fadeIn 0.3s ease;
+            animation: fadeInUp 0.3s ease-out;
         }
 
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         .message.user {
@@ -320,61 +421,71 @@
 
         .message-content {
             max-width: 70%;
-            padding: 12px 18px;
-            border-radius: 18px;
+            padding: 14px 20px;
+            border-radius: 20px;
+            word-wrap: break-word;
             line-height: 1.5;
-            font-size: 0.85rem;
+            font-size: 0.875rem;
         }
 
         .message.user .message-content {
             background: var(--bg-tertiary);
             border: 1px solid var(--border-color);
+            color: var(--text-primary);
         }
 
         .message.assistant .message-content {
             background: var(--bg-secondary);
             border: 1px solid var(--border-color);
+            color: var(--text-primary);
         }
 
+        /* Input Area */
         .input-container {
-            padding: 20px 24px;
+            padding: 20px 32px 28px 32px;
+            background: var(--bg-primary);
             border-top: 1px solid var(--border-color);
         }
 
         .input-wrapper {
             display: flex;
             gap: 12px;
+            align-items: center;
         }
 
         .input-wrapper input {
             flex: 1;
-            padding: 12px 16px;
+            padding: 14px 20px;
             background: var(--input-bg);
             border: 1px solid var(--border-color);
-            border-radius: 12px;
-            font-size: 0.85rem;
+            border-radius: 16px;
+            font-size: 0.875rem;
             color: var(--text-primary);
             outline: none;
+            transition: all 0.2s ease;
+            font-family: inherit;
         }
 
         .input-wrapper input:focus {
-            border-color: #4a5568;
+            border-color: var(--accent-legal);
+            box-shadow: 0 0 0 3px rgba(45, 55, 72, 0.1);
         }
 
         .input-wrapper button {
-            padding: 12px 28px;
+            padding: 14px 32px;
             background: var(--bg-tertiary);
             border: 1px solid var(--border-color);
-            border-radius: 12px;
-            font-size: 0.85rem;
+            border-radius: 16px;
+            font-size: 0.875rem;
             font-weight: 500;
             color: var(--text-primary);
             cursor: pointer;
-            transition: all 0.2s;
+            transition: all 0.2s ease;
         }
 
         .input-wrapper button:hover:not(:disabled) {
             background: var(--hover-bg);
+            transform: translateY(-1px);
         }
 
         .input-wrapper button:disabled {
@@ -382,10 +493,11 @@
             cursor: not-allowed;
         }
 
+        /* Loading Animation */
         .loading-spinner {
             display: inline-block;
-            width: 14px;
-            height: 14px;
+            width: 16px;
+            height: 16px;
             border: 2px solid var(--border-color);
             border-top-color: var(--text-primary);
             border-radius: 50%;
@@ -397,8 +509,9 @@
             to { transform: rotate(360deg); }
         }
 
-        .suggestions {
-            padding: 10px 24px;
+        /* Suggestions */
+        .suggestions-bar {
+            padding: 12px 32px;
             background: var(--bg-secondary);
             border-top: 1px solid var(--border-color);
             overflow-x: auto;
@@ -407,58 +520,40 @@
 
         .suggestions-label {
             font-size: 0.7rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
             color: var(--text-tertiary);
-            margin-right: 12px;
+            margin-right: 16px;
+            display: inline-block;
         }
 
         .suggestion-chip {
             display: inline-block;
-            padding: 5px 12px;
+            padding: 6px 14px;
             margin-right: 8px;
             background: var(--bg-tertiary);
             border: 1px solid var(--border-color);
-            border-radius: 16px;
+            border-radius: 20px;
             font-size: 0.7rem;
             cursor: pointer;
-            transition: all 0.2s;
+            transition: all 0.2s ease;
+            color: var(--text-secondary);
         }
 
         .suggestion-chip:hover {
             background: var(--hover-bg);
+            transform: translateY(-1px);
         }
 
-        .context-indicator {
-            margin: 12px 24px 0 24px;
-            padding: 8px 12px;
-            background: var(--bg-secondary);
-            border-radius: 8px;
-            font-size: 0.7rem;
-            color: var(--text-tertiary);
-            display: none;
-            align-items: center;
-            gap: 8px;
-        }
-
-        /* Mobile Menu */
-        .menu-toggle {
-            display: none;
-            position: fixed;
-            top: 16px;
-            left: 16px;
-            z-index: 20;
-            background: var(--bg-tertiary);
-            border: 1px solid var(--border-color);
-            border-radius: 8px;
-            padding: 8px 12px;
-            cursor: pointer;
-        }
-
+        /* Mobile Responsive */
         @media (max-width: 768px) {
             .sidebar {
                 position: fixed;
-                left: -300px;
+                left: -320px;
                 height: 100%;
-                z-index: 15;
+                z-index: 100;
+                box-shadow: var(--shadow-lg);
             }
 
             .sidebar.open {
@@ -467,177 +562,275 @@
 
             .menu-toggle {
                 display: block;
+                position: fixed;
+                top: 16px;
+                left: 16px;
+                z-index: 101;
+                background: var(--bg-tertiary);
+                border: 1px solid var(--border-color);
+                border-radius: 10px;
+                padding: 10px 14px;
+                cursor: pointer;
+                font-size: 1.2rem;
             }
 
             .message-content {
                 max-width: 85%;
             }
+
+            .chat-header, .status-bar, .chat-area, .input-container, .suggestions-bar {
+                padding-left: 16px;
+                padding-right: 16px;
+            }
+
+            .context-indicator {
+                margin-left: 16px;
+                margin-right: 16px;
+            }
+        }
+
+        .menu-toggle {
+            display: none;
+        }
+
+        /* Typography */
+        strong {
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        code {
+            background: var(--bg-tertiary);
+            padding: 2px 6px;
+            border-radius: 6px;
+            font-family: 'Monaco', monospace;
+            font-size: 0.75rem;
         }
     </style>
 </head>
 <body>
     <button class="menu-toggle" onclick="toggleSidebar()">☰</button>
-
+    
     <div class="app-container">
         <!-- Sidebar -->
         <div class="sidebar" id="sidebar">
             <div class="sidebar-header">
-                <div class="logo">Multi-Model RAG</div>
-                <div class="tagline">Legal · Medical · Disaster</div>
+                <div class="logo">Nexus RAG</div>
+                <div class="tagline">Multi-Domain Intelligence</div>
             </div>
-
+            
+            <!-- Theme Toggle Button -->
+            <div class="theme-toggle" onclick="toggleTheme()">
+                <span class="theme-icon" id="themeIcon">🌙</span>
+            </div>
+            
+            <!-- System Selection -->
             <div class="system-section">
                 <div class="section-label">Knowledge Domain</div>
-                <div class="system-buttons">
-                    <div class="system-btn legal-btn" onclick="selectSystem('legal')">
-                        <span class="system-emoji">⚖️</span>
-                        <div class="system-info">
-                            <div class="system-name">Legal & Constitutional</div>
-                            <div class="system-desc">IPC, Constitution, Cyber Laws</div>
-                        </div>
-                    </div>
-                    <div class="system-btn medical-btn" onclick="selectSystem('medical')">
-                        <span class="system-emoji">🏥</span>
-                        <div class="system-info">
-                            <div class="system-name">Medical Information</div>
-                            <div class="system-desc">Diseases, Treatments, Doctors</div>
-                        </div>
-                    </div>
-                    <div class="system-btn disaster-btn" onclick="selectSystem('disaster')">
-                        <span class="system-emoji">🌊</span>
-                        <div class="system-info">
-                            <div class="system-name">Disaster Management</div>
-                            <div class="system-desc">Emergency Response, Safety</div>
-                        </div>
-                    </div>
-                    <div class="system-btn all-btn" onclick="selectSystem('all')">
-                        <span class="system-emoji">🌐</span>
-                        <div class="system-info">
-                            <div class="system-name">All-in-One</div>
-                            <div class="system-desc">Integrated Knowledge</div>
-                        </div>
-                    </div>
+                <select id="systemSelect" class="system-select" onchange="onSystemChange()">
+                    <option value="">Select Domain</option>
+                </select>
+                <div id="systemInfoCard" class="system-info-card">
+                    Choose a domain to begin
                 </div>
             </div>
-
+            
+            <!-- Chat Sessions -->
             <div class="sessions-header">
-                <div class="sessions-title">Recent Chats</div>
-                <button class="new-chat-btn" onclick="createNewChat()">+ New</button>
+                <div class="sessions-title">Conversations</div>
+                <button class="new-chat-btn" onclick="createNewChat()">New Chat</button>
             </div>
-
+            
             <div class="sessions-list" id="sessionsList">
-                <div style="text-align: center; padding: 20px; color: #666;">Select a system to start</div>
+                <div style="text-align: center; padding: 20px; color: var(--text-tertiary);">
+                    Select a domain to start
+                </div>
             </div>
         </div>
 
-        <!-- Main Chat -->
+        <!-- Main Chat Area -->
         <div class="main-chat">
             <div class="chat-header">
-                <div class="chat-title" id="chatTitle">Select a System</div>
-                <div class="status-badge" id="systemBadge">⚖️ Legal</div>
+                <div class="current-system">
+                    <div class="system-indicator" id="systemIndicator"></div>
+                    <div class="system-name" id="currentSystemName">Nexus Platform</div>
+                </div>
             </div>
-
+            
             <div class="status-bar">
-                <div>
-                    <span class="status-dot" id="statusDot"></span>
+                <div class="status-indicator">
+                    <div class="status-dot" id="statusDot"></div>
                     <span id="statusText">Ready</span>
                 </div>
-                <div id="apiStatus">Mistral API</div>
+                <div id="statsInfo" style="font-size: 0.7rem; color: var(--text-tertiary);"></div>
             </div>
 
-            <div id="contextIndicator" class="context-indicator">
-                <span>◉</span> Context active — conversation history remembered
+            <!-- Context Indicator -->
+            <div id="contextIndicator" class="context-indicator" style="display: none;">
+                <span>◉</span>
+                <span>Context active — Previous messages influence responses</span>
             </div>
 
+            <!-- Chat Messages -->
             <div class="chat-area" id="chatArea">
                 <div class="message assistant">
                     <div class="message-content">
-                        <strong>Welcome to Multi-Model RAG System</strong><br><br>
-                        Select a knowledge domain from the sidebar to begin. Each domain provides specialized information.
+                        <strong>Welcome to Nexus RAG</strong><br><br>
+                        Select a knowledge domain from the sidebar to begin your inquiry. Each domain provides specialized intelligence in its respective field.
                     </div>
                 </div>
             </div>
 
-            <div class="suggestions" id="suggestions">
-                <span class="suggestions-label">Quick queries:</span>
-                <span class="suggestion-chip" onclick="askSuggestion('What is Article 21?')">Article 21</span>
-                <span class="suggestion-chip" onclick="askSuggestion('IPC Section 420')">IPC 420</span>
-                <span class="suggestion-chip" onclick="askSuggestion('Hypertension treatment')">Hypertension</span>
-                <span class="suggestion-chip" onclick="askSuggestion('Earthquake safety')">Earthquake safety</span>
+            <!-- Suggestions -->
+            <div class="suggestions-bar" id="suggestionsBar">
+                <span class="suggestions-label">Quick queries</span>
+                <span style="color: var(--text-tertiary); font-size: 0.7rem;">Select a domain for suggestions</span>
             </div>
 
+            <!-- Input Area -->
             <div class="input-container">
                 <div class="input-wrapper">
                     <input type="text" id="questionInput" placeholder="Type your question..." onkeypress="handleKeyPress(event)">
-                    <button onclick="sendQuestion()" id="sendBtn">Send</button>
+                    <button onclick="sendQuestion()" id="sendButton">Send</button>
                 </div>
             </div>
         </div>
     </div>
 
     <script>
-        // API Configuration
+        // ========== CONFIGURATION ==========
+        // Point to your live backend on Render
         const API_BASE = 'https://multimodel-rag-system-2.onrender.com';
         
+        // ========== APPLICATION STATE ==========
         let currentSystem = null;
         let currentSessionId = null;
         let isProcessing = false;
+        let systemsData = {};
+        let currentTheme = 'dark';
 
-        // System names mapping
-        const systemNames = {
-            'legal': 'Legal & Constitutional',
-            'medical': 'Medical Information',
-            'disaster': 'Disaster Management',
-            'all': 'All-in-One'
-        };
+        // ========== THEME MANAGEMENT ==========
+        function toggleTheme() {
+            const themeIcon = document.getElementById('themeIcon');
+            if (currentTheme === 'dark') {
+                document.documentElement.setAttribute('data-theme', 'light');
+                currentTheme = 'light';
+                themeIcon.innerHTML = '☀️';
+            } else {
+                document.documentElement.setAttribute('data-theme', 'dark');
+                currentTheme = 'dark';
+                themeIcon.innerHTML = '🌙';
+            }
+            localStorage.setItem('theme', currentTheme);
+        }
 
-        // Suggestions by system
-        const suggestionsMap = {
-            'legal': ['What is Article 21?', 'IPC Section 420', 'Cyber stalking laws', 'Fundamental rights', 'What is bail?'],
-            'medical': ['Hypertension treatment', 'Diabetes management', 'COVID-19 symptoms', 'First aid', 'Vaccination schedule'],
-            'disaster': ['Earthquake safety', 'Flood preparedness', 'Cyclone protocols', 'Fire emergency', 'Pandemic guidelines'],
-            'all': ['How do laws protect during disasters?', 'Medical emergency response', 'Integrated safety protocols']
-        };
+        function loadTheme() {
+            const savedTheme = localStorage.getItem('theme') || 'dark';
+            currentTheme = savedTheme;
+            document.documentElement.setAttribute('data-theme', savedTheme);
+            const themeIcon = document.getElementById('themeIcon');
+            themeIcon.innerHTML = savedTheme === 'dark' ? '🌙' : '☀️';
+        }
 
+        // ========== UI HELPERS ==========
         function toggleSidebar() {
             document.getElementById('sidebar').classList.toggle('open');
         }
 
-        async function selectSystem(system) {
-            currentSystem = system;
-            currentSessionId = null;
-            
-            // Update UI
-            document.querySelectorAll('.system-btn').forEach(btn => btn.classList.remove('active'));
-            document.querySelector(`.${system}-btn`).classList.add('active');
-            document.getElementById('systemBadge').innerHTML = system === 'legal' ? '⚖️ Legal' : system === 'medical' ? '🏥 Medical' : system === 'disaster' ? '🌊 Disaster' : '🌐 All';
-            document.getElementById('chatTitle').innerHTML = systemNames[system];
-            
-            // Update suggestions
-            updateSuggestions(system);
-            
-            // Load sessions
-            await loadSessions();
-            
-            // Create new chat if no sessions
-            setTimeout(async () => {
-                const sessionsList = document.getElementById('sessionsList');
-                if (sessionsList.children.length === 0 || sessionsList.innerHTML.includes('Select a system')) {
-                    await createNewChat();
+        function getTimeAgo(date) {
+            const seconds = Math.floor((new Date() - date) / 1000);
+            if (seconds < 60) return 'Just now';
+            const minutes = Math.floor(seconds / 60);
+            if (minutes < 60) return `${minutes}m ago`;
+            const hours = Math.floor(minutes / 60);
+            if (hours < 24) return `${hours}h ago`;
+            const days = Math.floor(hours / 24);
+            return `${days}d ago`;
+        }
+
+        function escapeHtml(text) {
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
+        }
+
+        // ========== API CALLS ==========
+        async function loadSystems() {
+            try {
+                const response = await fetch(`${API_BASE}/api/systems`);
+                systemsData = await response.json();
+                
+                const systemSelect = document.getElementById('systemSelect');
+                systemSelect.innerHTML = '<option value="">Select Domain</option>';
+                
+                const domains = [
+                    { key: 'legal', name: 'Legal & Constitutional' },
+                    { key: 'medical', name: 'Medical & Healthcare' },
+                    { key: 'disaster', name: 'Disaster Management' },
+                    { key: 'all', name: 'Integrated Intelligence' }
+                ];
+                
+                for (const domain of domains) {
+                    if (systemsData[domain.key]) {
+                        const option = document.createElement('option');
+                        option.value = domain.key;
+                        let statusText = '';
+                        if (systemsData[domain.key].status.ready) {
+                            statusText = ' ✓';
+                        } else if (systemsData[domain.key].status.loading) {
+                            statusText = ' (loading)';
+                        }
+                        option.textContent = domain.name + statusText;
+                        systemSelect.appendChild(option);
+                    }
                 }
-            }, 500);
-            
-            // Close sidebar on mobile
-            if (window.innerWidth <= 768) {
-                document.getElementById('sidebar').classList.remove('open');
+            } catch (error) {
+                console.error('Failed to load systems:', error);
+                setTimeout(loadSystems, 3000);
             }
         }
 
-        function updateSuggestions(system) {
-            const suggestions = suggestionsMap[system] || suggestionsMap.legal;
-            const container = document.getElementById('suggestions');
-            container.innerHTML = '<span class="suggestions-label">Quick queries:</span>' + 
-                suggestions.map(s => `<span class="suggestion-chip" onclick="askSuggestion('${s.replace(/'/g, "\\'")}')">${s}</span>`).join('');
+        async function loadSystemStatus() {
+            if (!currentSystem) return;
+            
+            try {
+                const response = await fetch(`${API_BASE}/api/status/${currentSystem}`);
+                const data = await response.json();
+                
+                const statusDot = document.getElementById('statusDot');
+                const statusText = document.getElementById('statusText');
+                const statsInfo = document.getElementById('statsInfo');
+                const sendButton = document.getElementById('sendButton');
+                
+                if (data.ready) {
+                    statusDot.className = 'status-dot';
+                    statusText.textContent = 'Operational';
+                    if (data.pdf_files && data.pdf_files.length > 0) {
+                        statsInfo.textContent = `${data.pdf_files.length} documents indexed`;
+                    } else if (data.chunks_count > 0) {
+                        statsInfo.textContent = `${data.chunks_count} knowledge segments`;
+                    } else {
+                        statsInfo.textContent = 'Ready';
+                    }
+                    sendButton.disabled = false;
+                } else if (data.loading) {
+                    statusDot.className = 'status-dot loading';
+                    statusText.textContent = 'Initializing';
+                    statsInfo.textContent = data.message;
+                    sendButton.disabled = true;
+                    setTimeout(loadSystemStatus, 2000);
+                } else {
+                    statusDot.className = 'status-dot';
+                    statusDot.style.background = '#e53e3e';
+                    statusText.textContent = 'Offline';
+                    statsInfo.textContent = data.message;
+                    sendButton.disabled = true;
+                }
+            } catch (error) {
+                console.error('Failed to load status:', error);
+                document.getElementById('statusDot').style.background = '#e53e3e';
+                document.getElementById('statusText').textContent = 'Connection Error';
+            }
         }
 
         async function loadSessions() {
@@ -649,28 +842,32 @@
                 const sessionsList = document.getElementById('sessionsList');
                 
                 if (!data.sessions || data.sessions.length === 0) {
-                    sessionsList.innerHTML = '<div style="text-align: center; padding: 20px; color: #666;">No chats yet<br>Click "New" to start</div>';
+                    sessionsList.innerHTML = '<div style="text-align: center; padding: 20px; color: var(--text-tertiary);">No conversations yet<br>Start a new chat</div>';
                     return;
                 }
                 
                 sessionsList.innerHTML = '';
-                for (const session of data.sessions) {
+                data.sessions.forEach(session => {
+                    const sessionDiv = document.createElement('div');
+                    sessionDiv.className = 'session-item';
+                    if (session.id === currentSessionId) {
+                        sessionDiv.classList.add('active');
+                    }
+                    
                     const date = new Date(session.last_updated);
                     const timeAgo = getTimeAgo(date);
                     
-                    const div = document.createElement('div');
-                    div.className = 'session-item';
-                    if (session.id === currentSessionId) div.classList.add('active');
-                    div.innerHTML = `
+                    sessionDiv.innerHTML = `
                         <div class="session-title">
                             <span>${escapeHtml(session.title)}</span>
                             <span class="delete-session" onclick="event.stopPropagation(); deleteSession('${session.id}')">×</span>
                         </div>
                         <div class="session-preview">${escapeHtml(session.preview)}</div>
+                        <div class="session-time">${timeAgo}</div>
                     `;
-                    div.onclick = () => loadSession(session.id);
-                    sessionsList.appendChild(div);
-                }
+                    sessionDiv.onclick = () => loadSession(session.id);
+                    sessionsList.appendChild(sessionDiv);
+                });
             } catch (error) {
                 console.error('Failed to load sessions:', error);
             }
@@ -678,7 +875,7 @@
 
         async function createNewChat() {
             if (!currentSystem) {
-                alert('Please select a system first');
+                alert('Please select a knowledge domain first');
                 return;
             }
             
@@ -690,7 +887,7 @@
                 const data = await response.json();
                 currentSessionId = data.session_id;
                 await loadSession(currentSessionId);
-                document.getElementById('contextIndicator').style.display = 'flex';
+                showContextIndicator(true);
             } catch (error) {
                 console.error('Failed to create session:', error);
             }
@@ -708,11 +905,12 @@
                 chatArea.innerHTML = '';
                 
                 if (data.messages.length === 0) {
+                    const systemInfo = systemsData[currentSystem]?.info;
                     chatArea.innerHTML = `
                         <div class="message assistant">
                             <div class="message-content">
-                                <strong>${systemNames[currentSystem]} System</strong><br><br>
-                                Ask me anything about this domain!
+                                <strong>${systemInfo?.name || currentSystem} System</strong><br><br>
+                                ${systemInfo?.description || 'How may I assist you today?'}
                             </div>
                         </div>
                     `;
@@ -722,8 +920,8 @@
                     });
                 }
                 
-                document.getElementById('contextIndicator').style.display = data.messages.length > 0 ? 'flex' : 'none';
                 await loadSessions();
+                showContextIndicator(data.messages.length > 0);
             } catch (error) {
                 console.error('Failed to load session:', error);
             }
@@ -737,10 +935,12 @@
                         currentSessionId = null;
                         document.getElementById('chatArea').innerHTML = `
                             <div class="message assistant">
-                                <div class="message-content">Chat deleted. Start a new conversation.</div>
+                                <div class="message-content">
+                                    Conversation deleted. Start a new chat to continue.
+                                </div>
                             </div>
                         `;
-                        document.getElementById('contextIndicator').style.display = 'none';
+                        showContextIndicator(false);
                     }
                     await loadSessions();
                 } catch (error) {
@@ -751,20 +951,21 @@
 
         async function sendQuestion() {
             if (isProcessing || !currentSystem) {
-                if (!currentSystem) alert('Please select a system first');
+                if (!currentSystem) alert('Please select a knowledge domain first');
                 return;
             }
             
             const input = document.getElementById('questionInput');
             const question = input.value.trim();
+            
             if (!question) return;
             
             addMessage(question, 'user');
             input.value = '';
             
             isProcessing = true;
-            const sendBtn = document.getElementById('sendBtn');
-            sendBtn.disabled = true;
+            const sendButton = document.getElementById('sendButton');
+            sendButton.disabled = true;
             
             const loadingMsg = addMessage('', 'assistant', true);
             
@@ -790,39 +991,116 @@
                         currentSessionId = data.session_id;
                     }
                     await loadSessions();
-                    document.getElementById('contextIndicator').style.display = 'flex';
+                    showContextIndicator(true);
                 }
             } catch (error) {
                 loadingMsg.remove();
-                addMessage('Error: Unable to connect to server', 'assistant');
+                addMessage('Error: Unable to connect to server. Please check your connection.', 'assistant');
             } finally {
                 isProcessing = false;
-                sendBtn.disabled = false;
+                sendButton.disabled = false;
                 input.focus();
             }
         }
 
         function addMessage(text, sender, isLoading = false) {
             const chatArea = document.getElementById('chatArea');
-            const div = document.createElement('div');
-            div.className = `message ${sender}`;
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `message ${sender}`;
             
-            const content = document.createElement('div');
-            content.className = 'message-content';
+            const messageContent = document.createElement('div');
+            messageContent.className = 'message-content';
             
             if (isLoading) {
-                content.innerHTML = '<span class="loading-spinner"></span> Processing';
+                messageContent.innerHTML = '<span class="loading-spinner"></span> Processing';
             } else {
-                content.innerHTML = text.replace(/\n/g, '<br>');
+                let formattedText = escapeHtml(text);
+                formattedText = formattedText.replace(/\n/g, '<br>');
+                formattedText = formattedText.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+                messageContent.innerHTML = formattedText;
             }
             
-            div.appendChild(content);
-            chatArea.appendChild(div);
+            messageDiv.appendChild(messageContent);
+            chatArea.appendChild(messageDiv);
             chatArea.scrollTop = chatArea.scrollHeight;
-            return div;
+            
+            return messageDiv;
         }
 
-        function askSuggestion(question) {
+        function showContextIndicator(show) {
+            const indicator = document.getElementById('contextIndicator');
+            indicator.style.display = show ? 'flex' : 'none';
+        }
+
+        function loadSuggestions(systemKey) {
+            const suggestionsBar = document.getElementById('suggestionsBar');
+            let suggestions = [];
+            
+            if (systemKey === 'legal') {
+                suggestions = ['Article 21 provisions', 'IPC Section 420', 'Cyber law fundamentals', 'Constitutional rights', 'Bail procedures'];
+            } else if (systemKey === 'medical') {
+                suggestions = ['Hypertension management', 'Diabetes treatment protocols', 'Tuberculosis cure', 'Emergency first aid', 'Vaccination schedule'];
+            } else if (systemKey === 'disaster') {
+                suggestions = ['Earthquake safety protocols', 'Flood response plan', 'Cyclone preparedness', 'Fire evacuation', 'Pandemic guidelines'];
+            } else if (systemKey === 'all') {
+                suggestions = ['Cross-domain analysis', 'Integrated response frameworks', 'System capabilities', 'Multi-domain queries'];
+            } else {
+                suggestionsBar.innerHTML = '<span class="suggestions-label">Quick queries</span><span style="color: var(--text-tertiary); font-size: 0.7rem;">Select a domain for suggestions</span>';
+                return;
+            }
+            
+            suggestionsBar.innerHTML = '<span class="suggestions-label">Quick queries</span>' + 
+                suggestions.map(s => `<span class="suggestion-chip" onclick="askQuestion('${escapeHtml(s).replace(/'/g, "\\'")}')">${escapeHtml(s)}</span>`).join('');
+        }
+
+        async function onSystemChange() {
+            const systemSelect = document.getElementById('systemSelect');
+            const selectedValue = systemSelect.value;
+            
+            if (!selectedValue) {
+                currentSystem = null;
+                document.getElementById('systemInfoCard').innerHTML = 'Select a domain to begin';
+                document.getElementById('sessionsList').innerHTML = '<div style="text-align: center; padding: 20px; color: var(--text-tertiary);">Select a domain to start</div>';
+                return;
+            }
+            
+            currentSystem = selectedValue;
+            currentSessionId = null;
+            
+            const systemInfo = systemsData[currentSystem]?.info;
+            const systemColors = {
+                legal: 'var(--accent-legal)',
+                medical: 'var(--accent-medical)',
+                disaster: 'var(--accent-disaster)',
+                all: 'var(--accent-all)'
+            };
+            
+            document.getElementById('systemInfoCard').innerHTML = `
+                <strong>${systemInfo?.name || currentSystem}</strong><br>
+                ${systemInfo?.description || 'Ready for your questions'}
+            `;
+            document.getElementById('systemInfoCard').style.borderLeftColor = systemColors[currentSystem];
+            
+            document.getElementById('systemIndicator').className = `system-indicator ${currentSystem}`;
+            document.getElementById('currentSystemName').textContent = systemInfo?.name || currentSystem;
+            
+            await loadSystemStatus();
+            await loadSessions();
+            loadSuggestions(currentSystem);
+            
+            setTimeout(async () => {
+                const sessionsList = document.getElementById('sessionsList');
+                if (sessionsList.children.length === 0 || sessionsList.innerHTML.includes('Select a domain')) {
+                    await createNewChat();
+                }
+            }, 1000);
+            
+            if (window.innerWidth <= 768) {
+                document.getElementById('sidebar').classList.remove('open');
+            }
+        }
+
+        function askQuestion(question) {
             document.getElementById('questionInput').value = question;
             sendQuestion();
         }
@@ -833,46 +1111,28 @@
             }
         }
 
-        function getTimeAgo(date) {
-            const seconds = Math.floor((new Date() - date) / 1000);
-            if (seconds < 60) return 'Just now';
-            const minutes = Math.floor(seconds / 60);
-            if (minutes < 60) return `${minutes}m ago`;
-            const hours = Math.floor(minutes / 60);
-            if (hours < 24) return `${hours}h ago`;
-            return `${Math.floor(hours / 24)}d ago`;
-        }
-
-        function escapeHtml(text) {
-            const div = document.createElement('div');
-            div.textContent = text;
-            return div.innerHTML;
-        }
-
-        // Check system health
-        async function checkHealth() {
-            try {
-                const response = await fetch(`${API_BASE}/health`);
-                if (response.ok) {
-                    document.getElementById('statusDot').style.background = '#48bb78';
-                    document.getElementById('statusText').innerHTML = 'Online';
-                } else {
-                    document.getElementById('statusDot').style.background = '#ed8936';
-                    document.getElementById('statusText').innerHTML = 'Degraded';
+        // Close sidebar when clicking outside on mobile
+        document.addEventListener('click', function(event) {
+            const sidebar = document.getElementById('sidebar');
+            const menuToggle = document.querySelector('.menu-toggle');
+            if (window.innerWidth <= 768 && sidebar.classList.contains('open')) {
+                if (!sidebar.contains(event.target) && !menuToggle.contains(event.target)) {
+                    sidebar.classList.remove('open');
                 }
-            } catch (error) {
-                document.getElementById('statusDot').style.background = '#f56565';
-                document.getElementById('statusText').innerHTML = 'Offline';
             }
-        }
+        });
 
-        // Auto-select legal system on load
-        setTimeout(() => {
-            selectSystem('legal');
-        }, 500);
+        // ========== INITIALIZATION ==========
+        loadTheme();
+        loadSystems();
         
-        checkHealth();
-        setInterval(checkHealth, 30000);
+        // Auto-refresh status and sessions every 5 seconds
+        setInterval(() => {
+            if (currentSystem) {
+                loadSystemStatus();
+                loadSessions();
+            }
+        }, 5000);
     </script>
 </body>
 </html>
