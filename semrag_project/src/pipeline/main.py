@@ -435,9 +435,9 @@ if __name__ == "__main__":
         print(f"📁 Created folder: {folder}")
     
     # Start initialization in background
-    init_thread = threading.Thread(target=initialize_all_systems)
-    init_thread.daemon = True
-    init_thread.start()
+    # init_thread = threading.Thread(target=initialize_all_systems)
+    #init_thread.daemon = True
+    #init_thread.start()
     
     print("\n" + "="*60)
     print("🚀 Multi-System RAG Platform Starting...")
@@ -450,4 +450,6 @@ if __name__ == "__main__":
     print("="*60 + "\n")
     
     # Run Flask app
-    app.run(debug=True, host='127.0.0.1', port=5000)
+   port = int(os.environ.get("PORT", 5000))
+
+   app.run(host="0.0.0.0", port=port)
