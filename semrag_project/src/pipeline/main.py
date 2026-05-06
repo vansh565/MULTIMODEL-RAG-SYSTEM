@@ -427,29 +427,20 @@ def get_systems():
         }
     return jsonify(systems_status)
 
-if __name__ == "__main__":
+iif __name__ == "__main__":
+
     # Create necessary folders
     for system in ['legal', 'medical', 'disaster']:
         folder = SYSTEMS[system]['pdf_folder']
         os.makedirs(folder, exist_ok=True)
         print(f"📁 Created folder: {folder}")
-    
-    # Start initialization in background
-    # init_thread = threading.Thread(target=initialize_all_systems)
-    #init_thread.daemon = True
-    #init_thread.start()
-    
-    print("\n" + "="*60)
-    print("🚀 Multi-System RAG Platform Starting...")
-    print("="*60)
-    print("\n📂 Please place your PDFs in:")
-    print("   - data/legal_docs/     (Constitution, IPC, Cyber Laws)")
-    print("   - data/medical_docs/   (Diseases, Treatments, Doctors)")
-    print("   - data/disaster_docs/  (Disaster Management, Safety)")
-    print("\n🌐 Access the application at: http://127.0.0.1:5000")
-    print("="*60 + "\n")
-    
-    # Run Flask app
-   port = int(os.environ.get("PORT", 5000))
 
-   app.run(host="0.0.0.0", port=port)
+    print("\n" + "=" * 60)
+    print("🚀 Multi-System RAG Platform Starting...")
+    print("=" * 60)
+
+    # Render dynamic port
+    port = int(os.environ.get("PORT", 5000))
+
+    # Run Flask app
+    app.run(host="0.0.0.0", port=port)
