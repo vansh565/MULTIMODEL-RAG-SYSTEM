@@ -427,7 +427,7 @@ def get_systems():
         }
     return jsonify(systems_status)
 
-iif __name__ == "__main__":
+if __name__ == "__main__":
 
     # Create necessary folders
     for system in ['legal', 'medical', 'disaster']:
