@@ -11,3 +11,4 @@ torch
 requests
 gunicorn
 python-dotenv
+flask-limiter
