@@ -24,11 +24,7 @@
             --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.3);
         }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Inter', sans-serif;
@@ -38,25 +34,11 @@
             overflow: hidden;
         }
 
-        ::-webkit-scrollbar {
-            width: 6px;
-            height: 6px;
-        }
+        ::-webkit-scrollbar { width: 6px; height: 6px; }
+        ::-webkit-scrollbar-track { background: var(--bg-tertiary); }
+        ::-webkit-scrollbar-thumb { background: var(--text-tertiary); border-radius: 3px; }
 
-        ::-webkit-scrollbar-track {
-            background: var(--bg-tertiary);
-        }
-
-        ::-webkit-scrollbar-thumb {
-            background: var(--text-tertiary);
-            border-radius: 3px;
-        }
-
-        .app-container {
-            display: flex;
-            height: 100vh;
-            position: relative;
-        }
+        .app-container { display: flex; height: 100vh; position: relative; }
 
         /* Sidebar */
         .sidebar {
@@ -69,405 +51,170 @@
             z-index: 10;
         }
 
-        .sidebar-header {
-            padding: 24px 20px;
-            border-bottom: 1px solid var(--border-color);
-        }
-
+        .sidebar-header { padding: 24px 20px; border-bottom: 1px solid var(--border-color); }
         .logo {
-            font-size: 1.3rem;
-            font-weight: 600;
+            font-size: 1.3rem; font-weight: 600;
             background: linear-gradient(135deg, #fff 0%, #a0aec0 100%);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
+            -webkit-background-clip: text; background-clip: text; color: transparent;
             margin-bottom: 4px;
         }
+        .tagline { font-size: 0.7rem; color: var(--text-tertiary); }
 
-        .tagline {
-            font-size: 0.7rem;
-            color: var(--text-tertiary);
-        }
-
-        /* System Buttons */
-        .system-section {
-            padding: 20px;
-            border-bottom: 1px solid var(--border-color);
-        }
-
+        .system-section { padding: 20px; border-bottom: 1px solid var(--border-color); }
         .section-label {
-            font-size: 0.7rem;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            color: var(--text-tertiary);
-            margin-bottom: 12px;
+            font-size: 0.7rem; font-weight: 600; text-transform: uppercase;
+            letter-spacing: 0.05em; color: var(--text-tertiary); margin-bottom: 12px;
         }
-
-        .system-buttons {
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
-        }
-
+        .system-buttons { display: flex; flex-direction: column; gap: 8px; }
         .system-btn {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            padding: 12px;
-            background: var(--bg-tertiary);
-            border: 1px solid var(--border-color);
-            border-radius: 10px;
-            cursor: pointer;
-            transition: all 0.2s ease;
+            display: flex; align-items: center; gap: 12px; padding: 12px;
+            background: var(--bg-tertiary); border: 1px solid var(--border-color);
+            border-radius: 10px; cursor: pointer; transition: all 0.2s ease;
         }
-
-        .system-btn:hover {
-            background: var(--hover-bg);
-            transform: translateX(4px);
-        }
-
-        .system-btn.active {
-            border-left: 3px solid;
-            background: var(--hover-bg);
-        }
-
+        .system-btn:hover { background: var(--hover-bg); transform: translateX(4px); }
+        .system-btn.active { border-left: 3px solid; background: var(--hover-bg); }
         .legal-btn.active { border-left-color: var(--accent-legal); }
         .medical-btn.active { border-left-color: var(--accent-medical); }
         .disaster-btn.active { border-left-color: var(--accent-disaster); }
         .all-btn.active { border-left-color: var(--accent-all); }
+        .system-emoji { font-size: 1.3rem; }
+        .system-info { flex: 1; }
+        .system-name { font-size: 0.85rem; font-weight: 500; }
+        .system-desc { font-size: 0.7rem; color: var(--text-tertiary); }
 
-        .system-emoji {
-            font-size: 1.3rem;
-        }
-
-        .system-info {
-            flex: 1;
-        }
-
-        .system-name {
-            font-size: 0.85rem;
-            font-weight: 500;
-        }
-
-        .system-desc {
-            font-size: 0.7rem;
-            color: var(--text-tertiary);
-        }
-
-        /* Chat Sessions */
         .sessions-header {
-            padding: 16px 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+            padding: 16px 20px; display: flex;
+            justify-content: space-between; align-items: center;
         }
-
-        .sessions-title {
-            font-size: 0.7rem;
-            font-weight: 600;
-            text-transform: uppercase;
-            color: var(--text-tertiary);
-        }
-
+        .sessions-title { font-size: 0.7rem; font-weight: 600; text-transform: uppercase; color: var(--text-tertiary); }
         .new-chat-btn {
-            padding: 6px 14px;
-            background: var(--bg-tertiary);
-            border: 1px solid var(--border-color);
-            border-radius: 8px;
-            font-size: 0.7rem;
-            font-weight: 500;
-            color: var(--text-primary);
-            cursor: pointer;
-            transition: all 0.2s;
+            padding: 6px 14px; background: var(--bg-tertiary); border: 1px solid var(--border-color);
+            border-radius: 8px; font-size: 0.7rem; font-weight: 500; color: var(--text-primary);
+            cursor: pointer; transition: all 0.2s;
         }
+        .new-chat-btn:hover { background: var(--hover-bg); }
 
-        .new-chat-btn:hover {
-            background: var(--hover-bg);
-        }
-
-        .sessions-list {
-            flex: 1;
-            overflow-y: auto;
-            padding: 8px 12px;
-        }
-
+        .sessions-list { flex: 1; overflow-y: auto; padding: 8px 12px; }
         .session-item {
-            padding: 12px;
-            margin-bottom: 8px;
-            background: var(--bg-tertiary);
-            border: 1px solid var(--border-color);
-            border-radius: 10px;
-            cursor: pointer;
-            transition: all 0.2s;
+            padding: 12px; margin-bottom: 8px; background: var(--bg-tertiary);
+            border: 1px solid var(--border-color); border-radius: 10px;
+            cursor: pointer; transition: all 0.2s;
         }
-
-        .session-item:hover {
-            background: var(--hover-bg);
-            transform: translateX(2px);
-        }
-
-        .session-item.active {
-            border-left: 3px solid;
-        }
-
+        .session-item:hover { background: var(--hover-bg); transform: translateX(2px); }
+        .session-item.active { border-left: 3px solid; }
         .session-legal.active { border-left-color: var(--accent-legal); }
         .session-medical.active { border-left-color: var(--accent-medical); }
         .session-disaster.active { border-left-color: var(--accent-disaster); }
         .session-all.active { border-left-color: var(--accent-all); }
-
-        .session-title {
-            font-size: 0.8rem;
-            font-weight: 500;
-            margin-bottom: 4px;
-            display: flex;
-            justify-content: space-between;
-        }
-
-        .session-preview {
-            font-size: 0.7rem;
-            color: var(--text-tertiary);
-            overflow: hidden;
-            text-overflow: ellipsis;
-            white-space: nowrap;
-        }
-
-        .delete-session {
-            color: var(--text-tertiary);
-            cursor: pointer;
-            opacity: 0;
-            transition: opacity 0.2s;
-        }
-
-        .session-item:hover .delete-session {
-            opacity: 1;
-        }
-
-        .delete-session:hover {
-            color: #f56565;
-        }
+        .session-title { font-size: 0.8rem; font-weight: 500; margin-bottom: 4px; display: flex; justify-content: space-between; }
+        .session-preview { font-size: 0.7rem; color: var(--text-tertiary); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+        .delete-session { color: var(--text-tertiary); cursor: pointer; opacity: 0; transition: opacity 0.2s; }
+        .session-item:hover .delete-session { opacity: 1; }
+        .delete-session:hover { color: #f56565; }
 
         /* Main Chat */
-        .main-chat {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            background: var(--bg-primary);
-        }
-
+        .main-chat { flex: 1; display: flex; flex-direction: column; background: var(--bg-primary); }
         .chat-header {
-            padding: 16px 24px;
-            border-bottom: 1px solid var(--border-color);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+            padding: 16px 24px; border-bottom: 1px solid var(--border-color);
+            display: flex; justify-content: space-between; align-items: center;
         }
-
-        .chat-title {
-            font-size: 1rem;
-            font-weight: 500;
-        }
-
-        .status-badge {
-            padding: 4px 12px;
-            background: var(--bg-tertiary);
-            border-radius: 20px;
-            font-size: 0.7rem;
-        }
+        .chat-title { font-size: 1rem; font-weight: 500; }
+        .status-badge { padding: 4px 12px; background: var(--bg-tertiary); border-radius: 20px; font-size: 0.7rem; }
 
         .status-bar {
-            padding: 8px 24px;
-            background: var(--bg-secondary);
+            padding: 8px 24px; background: var(--bg-secondary);
             border-bottom: 1px solid var(--border-color);
-            display: flex;
-            justify-content: space-between;
-            font-size: 0.7rem;
-            color: var(--text-tertiary);
+            display: flex; justify-content: space-between; font-size: 0.7rem; color: var(--text-tertiary);
         }
+        .status-dot { display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: #48bb78; margin-right: 8px; }
 
-        .status-dot {
-            display: inline-block;
-            width: 8px;
-            height: 8px;
-            border-radius: 50%;
-            background: #48bb78;
-            margin-right: 8px;
-        }
+        .chat-area { flex: 1; overflow-y: auto; padding: 24px; }
 
-        .chat-area {
-            flex: 1;
-            overflow-y: auto;
-            padding: 24px;
-        }
-
-        .message {
-            margin-bottom: 20px;
-            display: flex;
-            animation: fadeIn 0.3s ease;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .message.user {
-            justify-content: flex-end;
-        }
-
+        .message { margin-bottom: 20px; display: flex; animation: fadeIn 0.3s ease; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        .message.user { justify-content: flex-end; }
         .message-content {
-            max-width: 70%;
-            padding: 12px 18px;
-            border-radius: 18px;
-            line-height: 1.5;
-            font-size: 0.85rem;
+            max-width: 70%; padding: 12px 18px; border-radius: 18px;
+            line-height: 1.6; font-size: 0.85rem;
         }
+        .message.user .message-content { background: var(--bg-tertiary); border: 1px solid var(--border-color); }
+        .message.assistant .message-content { background: var(--bg-secondary); border: 1px solid var(--border-color); }
 
-        .message.user .message-content {
-            background: var(--bg-tertiary);
-            border: 1px solid var(--border-color);
+        /* Streaming cursor blink */
+        .streaming-cursor::after {
+            content: '▋';
+            display: inline-block;
+            animation: blink 0.7s step-end infinite;
+            color: var(--text-tertiary);
+            margin-left: 2px;
         }
+        @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
 
-        .message.assistant .message-content {
-            background: var(--bg-secondary);
-            border: 1px solid var(--border-color);
-        }
-
-        .input-container {
-            padding: 20px 24px;
-            border-top: 1px solid var(--border-color);
-        }
-
-        .input-wrapper {
-            display: flex;
-            gap: 12px;
-        }
-
+        .input-container { padding: 20px 24px; border-top: 1px solid var(--border-color); }
+        .input-wrapper { display: flex; gap: 12px; }
         .input-wrapper input {
-            flex: 1;
-            padding: 12px 16px;
-            background: var(--input-bg);
-            border: 1px solid var(--border-color);
-            border-radius: 12px;
-            font-size: 0.85rem;
-            color: var(--text-primary);
-            outline: none;
+            flex: 1; padding: 12px 16px; background: var(--input-bg);
+            border: 1px solid var(--border-color); border-radius: 12px;
+            font-size: 0.85rem; color: var(--text-primary); outline: none;
         }
-
-        .input-wrapper input:focus {
-            border-color: #4a5568;
-        }
-
+        .input-wrapper input:focus { border-color: #4a5568; }
         .input-wrapper button {
-            padding: 12px 28px;
-            background: var(--bg-tertiary);
-            border: 1px solid var(--border-color);
-            border-radius: 12px;
-            font-size: 0.85rem;
-            font-weight: 500;
-            color: var(--text-primary);
-            cursor: pointer;
-            transition: all 0.2s;
+            padding: 12px 28px; background: var(--bg-tertiary); border: 1px solid var(--border-color);
+            border-radius: 12px; font-size: 0.85rem; font-weight: 500; color: var(--text-primary);
+            cursor: pointer; transition: all 0.2s;
         }
-
-        .input-wrapper button:hover:not(:disabled) {
-            background: var(--hover-bg);
-        }
-
-        .input-wrapper button:disabled {
-            opacity: 0.5;
-            cursor: not-allowed;
-        }
+        .input-wrapper button:hover:not(:disabled) { background: var(--hover-bg); }
+        .input-wrapper button:disabled { opacity: 0.5; cursor: not-allowed; }
 
         .loading-spinner {
-            display: inline-block;
-            width: 14px;
-            height: 14px;
-            border: 2px solid var(--border-color);
-            border-top-color: var(--text-primary);
-            border-radius: 50%;
-            animation: spin 0.6s linear infinite;
-            margin-right: 8px;
+            display: inline-block; width: 14px; height: 14px;
+            border: 2px solid var(--border-color); border-top-color: var(--text-primary);
+            border-radius: 50%; animation: spin 0.6s linear infinite; margin-right: 8px;
         }
-
-        @keyframes spin {
-            to { transform: rotate(360deg); }
-        }
+        @keyframes spin { to { transform: rotate(360deg); } }
 
         .suggestions {
-            padding: 10px 24px;
-            background: var(--bg-secondary);
-            border-top: 1px solid var(--border-color);
-            overflow-x: auto;
-            white-space: nowrap;
+            padding: 10px 24px; background: var(--bg-secondary);
+            border-top: 1px solid var(--border-color); overflow-x: auto; white-space: nowrap;
         }
-
-        .suggestions-label {
-            font-size: 0.7rem;
-            color: var(--text-tertiary);
-            margin-right: 12px;
-        }
-
+        .suggestions-label { font-size: 0.7rem; color: var(--text-tertiary); margin-right: 12px; }
         .suggestion-chip {
-            display: inline-block;
-            padding: 5px 12px;
-            margin-right: 8px;
-            background: var(--bg-tertiary);
-            border: 1px solid var(--border-color);
-            border-radius: 16px;
-            font-size: 0.7rem;
-            cursor: pointer;
-            transition: all 0.2s;
+            display: inline-block; padding: 5px 12px; margin-right: 8px;
+            background: var(--bg-tertiary); border: 1px solid var(--border-color);
+            border-radius: 16px; font-size: 0.7rem; cursor: pointer; transition: all 0.2s;
         }
-
-        .suggestion-chip:hover {
-            background: var(--hover-bg);
-        }
+        .suggestion-chip:hover { background: var(--hover-bg); }
 
         .context-indicator {
-            margin: 12px 24px 0 24px;
-            padding: 8px 12px;
-            background: var(--bg-secondary);
-            border-radius: 8px;
-            font-size: 0.7rem;
-            color: var(--text-tertiary);
-            display: none;
-            align-items: center;
-            gap: 8px;
+            margin: 12px 24px 0 24px; padding: 8px 12px;
+            background: var(--bg-secondary); border-radius: 8px;
+            font-size: 0.7rem; color: var(--text-tertiary);
+            display: none; align-items: center; gap: 8px;
         }
 
         .menu-toggle {
-            display: none;
-            position: fixed;
-            top: 16px;
-            left: 16px;
-            z-index: 20;
-            background: var(--bg-tertiary);
-            border: 1px solid var(--border-color);
-            border-radius: 8px;
-            padding: 8px 12px;
-            cursor: pointer;
+            display: none; position: fixed; top: 16px; left: 16px; z-index: 20;
+            background: var(--bg-tertiary); border: 1px solid var(--border-color);
+            border-radius: 8px; padding: 8px 12px; cursor: pointer;
         }
 
         @media (max-width: 768px) {
-            .sidebar {
-                position: fixed;
-                left: -300px;
-                height: 100%;
-                z-index: 15;
-            }
+            .sidebar { position: fixed; left: -300px; height: 100%; z-index: 15; }
+            .sidebar.open { left: 0; }
+            .menu-toggle { display: block; }
+            .message-content { max-width: 85%; }
+        }
 
-            .sidebar.open {
-                left: 0;
-            }
-
-            .menu-toggle {
-                display: block;
-            }
-
-            .message-content {
-                max-width: 85%;
-            }
+        .footer {
+            padding: 16px 20px; 
+            border-top: 1px solid var(--border-color); 
+            margin-top: auto; 
+            background: var(--bg-secondary);
+        }
+        .footer-content {
+            font-size: 0.65rem; 
+            color: var(--text-tertiary); 
+            text-align: center;
         }
     </style>
 </head>
@@ -524,6 +271,12 @@
             <div class="sessions-list" id="sessionsList">
                 <div style="text-align: center; padding: 20px; color: #666;">Select a system to start</div>
             </div>
+            
+            <div class="footer">
+                <div class="footer-content">
+                    Developed with ❤️ by <strong>Vansh Sharma</strong>
+                </div>
+            </div>
         </div>
 
         <!-- Main Chat -->
@@ -538,7 +291,7 @@
                     <span class="status-dot" id="statusDot"></span>
                     <span id="statusText">Ready</span>
                 </div>
-                <div id="apiStatus">Semrag Ready</div>
+                <div id="apiStatus">Streaming Ready</div>
             </div>
 
             <div id="contextIndicator" class="context-indicator">
@@ -548,7 +301,7 @@
             <div class="chat-area" id="chatArea">
                 <div class="message assistant">
                     <div class="message-content">
-                        <strong>Welcome to Nexus RAG</strong><br><br>
+                        <strong>Welcome to Trinetra AI</strong><br><br>
                         Select a knowledge domain from the sidebar to begin. Each domain has its own separate chat history.
                     </div>
                 </div>
@@ -572,330 +325,33 @@
     </div>
 
     <script>
-        // API Configuration
-        const API_BASE = 'https://multimodel-rag-system-2.onrender.com';
+        // Configuration
+        const API_BASE = window.location.origin;  // Use current origin
         
-        // State Management
+        // State
         let currentSystem = null;
         let currentSessionId = null;
         let isProcessing = false;
-        
-        // Store sessions data per system
-        let sessionsCache = {
-            legal: [],
-            medical: [],
-            disaster: [],
-            all: []
-        };
+        let currentReader = null;
+        let sessionsCache = { legal: [], medical: [], disaster: [], all: [] };
 
-        // System names and suggestions
         const systemNames = {
-            'legal': 'Legal & Constitutional',
-            'medical': 'Medical Information',
-            'disaster': 'Disaster Management',
-            'all': 'All-in-One'
+            legal: 'Legal & Constitutional',
+            medical: 'Medical Information',
+            disaster: 'Disaster Management',
+            all: 'All-in-One'
         };
 
         const suggestionsMap = {
-            'legal': ['What is Article 21?', 'IPC Section 420', 'Cyber stalking laws', 'Fundamental rights', 'Bail provisions'],
-            'medical': ['Hypertension treatment', 'Diabetes management', 'COVID-19 symptoms', 'First aid', 'Vaccination schedule'],
-            'disaster': ['Earthquake safety', 'Flood preparedness', 'Cyclone protocols', 'Fire emergency', 'Pandemic guidelines'],
-            'all': ['How do laws protect during disasters?', 'Medical emergency response', 'Integrated safety protocols']
+            legal: ['What is Article 21?', 'IPC Section 420', 'Cyber stalking laws', 'Fundamental rights', 'Bail provisions'],
+            medical: ['Hypertension treatment', 'Diabetes management', 'COVID-19 symptoms', 'First aid', 'Vaccination schedule'],
+            disaster: ['Earthquake safety', 'Flood preparedness', 'Cyclone protocols', 'Fire emergency', 'Pandemic guidelines'],
+            all: ['How do laws protect during disasters?', 'Medical emergency response', 'Integrated safety protocols']
         };
 
-        function toggleSidebar() {
-            document.getElementById('sidebar').classList.toggle('open');
-        }
-
-        async function selectSystem(system) {
-            if (currentSystem === system) return;
-            
-            // Clear current state
-            currentSystem = system;
-            currentSessionId = null;
-            
-            // Update UI - active button
-            document.querySelectorAll('.system-btn').forEach(btn => btn.classList.remove('active'));
-            document.querySelector(`.${system}-btn`).classList.add('active');
-            
-            // Update header
-            document.getElementById('systemBadge').innerHTML = system === 'legal' ? '⚖️ Legal' : system === 'medical' ? '🏥 Medical' : system === 'disaster' ? '🌊 Disaster' : '🌐 All';
-            document.getElementById('chatTitle').innerHTML = systemNames[system];
-            
-            // Update suggestions
-            updateSuggestions(system);
-            
-            // Clear chat area and show loading
-            document.getElementById('chatArea').innerHTML = `
-                <div class="message assistant">
-                    <div class="message-content">
-                        <strong>Loading ${systemNames[system]} System...</strong><br><br>
-                        Please wait while we retrieve your chat history.
-                    </div>
-                </div>
-            `;
-            
-            // Load sessions for this system
-            await loadSessions();
-            
-            // Auto-create first chat if no sessions exist
-            const sessionsList = document.getElementById('sessionsList');
-            if (!sessionsCache[currentSystem] || sessionsCache[currentSystem].length === 0) {
-                await createNewChat();
-            } else {
-                // Load the most recent session
-                const mostRecent = sessionsCache[currentSystem][0];
-                if (mostRecent) {
-                    await loadSession(mostRecent.id);
-                }
-            }
-            
-            // Close sidebar on mobile
-            if (window.innerWidth <= 768) {
-                document.getElementById('sidebar').classList.remove('open');
-            }
-        }
-
-        function updateSuggestions(system) {
-            const suggestions = suggestionsMap[system] || suggestionsMap.legal;
-            const container = document.getElementById('suggestions');
-            container.innerHTML = '<span class="suggestions-label">Quick queries:</span>' + 
-                suggestions.map(s => `<span class="suggestion-chip" onclick="askSuggestion('${s.replace(/'/g, "\\'")}')">${s}</span>`).join('');
-        }
-
-        async function loadSessions() {
-            if (!currentSystem) return;
-            
-            try {
-                const response = await fetch(`${API_BASE}/api/sessions/${currentSystem}`);
-                const data = await response.json();
-                
-                sessionsCache[currentSystem] = data.sessions || [];
-                
-                const sessionsList = document.getElementById('sessionsList');
-                
-                if (sessionsCache[currentSystem].length === 0) {
-                    sessionsList.innerHTML = '<div style="text-align: center; padding: 20px; color: #666;">No chats yet<br>Click "New Chat" to start</div>';
-                    return;
-                }
-                
-                sessionsList.innerHTML = '';
-                for (const session of sessionsCache[currentSystem]) {
-                    const date = new Date(session.last_updated);
-                    const timeAgo = getTimeAgo(date);
-                    
-                    const div = document.createElement('div');
-                    div.className = `session-item session-${currentSystem}`;
-                    if (session.id === currentSessionId) {
-                        div.classList.add('active');
-                    }
-                    div.innerHTML = `
-                        <div class="session-title">
-                            <span>${escapeHtml(session.title)}</span>
-                            <span class="delete-session" onclick="event.stopPropagation(); deleteSession('${session.id}')">×</span>
-                        </div>
-                        <div class="session-preview">${escapeHtml(session.preview)}</div>
-                    `;
-                    div.onclick = () => loadSession(session.id);
-                    sessionsList.appendChild(div);
-                }
-            } catch (error) {
-                console.error('Failed to load sessions:', error);
-            }
-        }
-
-        async function createNewChat() {
-            if (!currentSystem) {
-                alert('Please select a system first');
-                return;
-            }
-            
-            try {
-                const response = await fetch(`${API_BASE}/api/sessions/${currentSystem}`, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' }
-                });
-                const data = await response.json();
-                currentSessionId = data.session_id;
-                
-                // Clear chat area
-                document.getElementById('chatArea').innerHTML = `
-                    <div class="message assistant">
-                        <div class="message-content">
-                            <strong>${systemNames[currentSystem]} System</strong><br><br>
-                            New conversation started. Ask me anything!
-                        </div>
-                    </div>
-                `;
-                
-                document.getElementById('contextIndicator').style.display = 'none';
-                await loadSessions();
-            } catch (error) {
-                console.error('Failed to create session:', error);
-            }
-        }
-
-        async function loadSession(sessionId) {
-            if (!currentSystem) return;
-            
-            try {
-                const response = await fetch(`${API_BASE}/api/sessions/${currentSystem}/${sessionId}`);
-                const data = await response.json();
-                currentSessionId = sessionId;
-                
-                const chatArea = document.getElementById('chatArea');
-                chatArea.innerHTML = '';
-                
-                if (data.messages.length === 0) {
-                    chatArea.innerHTML = `
-                        <div class="message assistant">
-                            <div class="message-content">
-                                <strong>${systemNames[currentSystem]} System</strong><br><br>
-                                How may I assist you today?
-                            </div>
-                        </div>
-                    `;
-                    document.getElementById('contextIndicator').style.display = 'none';
-                } else {
-                    data.messages.forEach(msg => {
-                        addMessage(msg.content, msg.role, false);
-                    });
-                    document.getElementById('contextIndicator').style.display = 'flex';
-                }
-                
-                await loadSessions();
-            } catch (error) {
-                console.error('Failed to load session:', error);
-            }
-        }
-
-        async function deleteSession(sessionId) {
-            if (confirm('Delete this conversation? This action cannot be undone.')) {
-                try {
-                    await fetch(`${API_BASE}/api/sessions/${currentSystem}/${sessionId}`, { method: 'DELETE' });
-                    
-                    // Remove from cache
-                    sessionsCache[currentSystem] = sessionsCache[currentSystem].filter(s => s.id !== sessionId);
-                    
-                    if (currentSessionId === sessionId) {
-                        currentSessionId = null;
-                        document.getElementById('chatArea').innerHTML = `
-                            <div class="message assistant">
-                                <div class="message-content">
-                                    Conversation deleted. Create a new chat to continue.
-                                </div>
-                            </div>
-                        `;
-                        document.getElementById('contextIndicator').style.display = 'none';
-                    }
-                    
-                    await loadSessions();
-                    
-                    // Auto-create new chat if no sessions left
-                    if (sessionsCache[currentSystem].length === 0) {
-                        await createNewChat();
-                    }
-                } catch (error) {
-                    console.error('Failed to delete session:', error);
-                }
-            }
-        }
-
-        async function sendQuestion() {
-            if (isProcessing || !currentSystem) {
-                if (!currentSystem) alert('Please select a system first');
-                return;
-            }
-            
-            const input = document.getElementById('questionInput');
-            const question = input.value.trim();
-            if (!question) return;
-            
-            addMessage(question, 'user');
-            input.value = '';
-            
-            isProcessing = true;
-            const sendBtn = document.getElementById('sendBtn');
-            sendBtn.disabled = true;
-            
-            const loadingMsg = addMessage('', 'assistant', true);
-            
-            try {
-                const response = await fetch(`${API_BASE}/api/ask`, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({
-                        system: currentSystem,
-                        question: question,
-                        session_id: currentSessionId
-                    })
-                });
-                
-                const data = await response.json();
-                loadingMsg.remove();
-                
-                if (data.error) {
-                    addMessage('Error: ' + data.error, 'assistant');
-                } else {
-                    addMessage(data.answer, 'assistant');
-                    if (!currentSessionId && data.session_id) {
-                        currentSessionId = data.session_id;
-                    }
-                    await loadSessions();
-                    document.getElementById('contextIndicator').style.display = 'flex';
-                }
-            } catch (error) {
-                loadingMsg.remove();
-                addMessage('Error: Unable to connect to server. Please check your connection.', 'assistant');
-            } finally {
-                isProcessing = false;
-                sendBtn.disabled = false;
-                input.focus();
-            }
-        }
-
-        function addMessage(text, sender, isLoading = false) {
-            const chatArea = document.getElementById('chatArea');
-            const div = document.createElement('div');
-            div.className = `message ${sender}`;
-            
-            const content = document.createElement('div');
-            content.className = 'message-content';
-            
-            if (isLoading) {
-                content.innerHTML = '<span class="loading-spinner"></span> Processing( Please wait )';
-            } else {
-                let formattedText = escapeHtml(text);
-                formattedText = formattedText.replace(/\n/g, '<br>');
-                formattedText = formattedText.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
-                content.innerHTML = formattedText;
-            }
-            
-            div.appendChild(content);
-            chatArea.appendChild(div);
-            chatArea.scrollTop = chatArea.scrollHeight;
-            return div;
-        }
-
-        function askSuggestion(question) {
-            document.getElementById('questionInput').value = question;
-            sendQuestion();
-        }
-
-        function handleKeyPress(event) {
-            if (event.key === 'Enter' && !isProcessing) {
-                sendQuestion();
-            }
-        }
-
-        function getTimeAgo(date) {
-            const seconds = Math.floor((new Date() - date) / 1000);
-            if (seconds < 60) return 'Just now';
-            const minutes = Math.floor(seconds / 60);
-            if (minutes < 60) return `${minutes}m ago`;
-            const hours = Math.floor(minutes / 60);
-            if (hours < 24) return `${hours}h ago`;
-            return `${Math.floor(hours / 24)}d ago`;
+        // UI Helpers
+        function toggleSidebar() { 
+            document.getElementById('sidebar').classList.toggle('open'); 
         }
 
         function escapeHtml(text) {
@@ -904,37 +360,316 @@
             return div.innerHTML;
         }
 
-        // Check system health
+        function formatText(raw) {
+            let t = escapeHtml(raw);
+            t = t.replace(/\n/g, '<br>');
+            t = t.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+            return t;
+        }
+
+        function updateSuggestions(system) {
+            const chips = (suggestionsMap[system] || suggestionsMap.legal)
+                .map(s => `<span class="suggestion-chip" onclick="askSuggestion('${s.replace(/'/g, "\\'")}')">${escapeHtml(s)}</span>`)
+                .join('');
+            document.getElementById('suggestions').innerHTML = 
+                '<span class="suggestions-label">Quick queries:</span>' + chips;
+        }
+
+        // System Management
+        async function selectSystem(system) {
+            if (currentSystem === system) return;
+            
+            currentSystem = system;
+            currentSessionId = null;
+
+            // Update UI
+            document.querySelectorAll('.system-btn').forEach(b => b.classList.remove('active'));
+            document.querySelector(`.${system}-btn`).classList.add('active');
+
+            const icons = { legal: '⚖️', medical: '🏥', disaster: '🌊', all: '🌐' };
+            document.getElementById('systemBadge').innerHTML = `${icons[system]} ${systemNames[system]}`;
+            document.getElementById('chatTitle').innerHTML = systemNames[system];
+            updateSuggestions(system);
+
+            // Clear chat area with loading message
+            document.getElementById('chatArea').innerHTML = `
+                <div class="message assistant">
+                    <div class="message-content">
+                        <strong>Loading ${systemNames[system]} System...</strong><br><br>
+                        Retrieving chat history...
+                    </div>
+                </div>`;
+
+            await loadSessions();
+
+            if (!sessionsCache[currentSystem] || sessionsCache[currentSystem].length === 0) {
+                await createNewChat();
+            } else {
+                await loadSession(sessionsCache[currentSystem][0].id);
+            }
+
+            if (window.innerWidth <= 768) {
+                document.getElementById('sidebar').classList.remove('open');
+            }
+        }
+
+        async function loadSessions() {
+            if (!currentSystem) return;
+            
+            try {
+                const res = await fetch(`${API_BASE}/api/sessions/${currentSystem}`);
+                const data = await res.json();
+                sessionsCache[currentSystem] = data.sessions || [];
+
+                const list = document.getElementById('sessionsList');
+                if (!sessionsCache[currentSystem].length) {
+                    list.innerHTML = '<div style="text-align:center;padding:20px;color:#666">No chats yet<br>Click "New Chat" to start</div>';
+                    return;
+                }
+
+                list.innerHTML = '';
+                for (const s of sessionsCache[currentSystem]) {
+                    const div = document.createElement('div');
+                    div.className = `session-item session-${currentSystem}${s.id === currentSessionId ? ' active' : ''}`;
+                    div.innerHTML = `
+                        <div class="session-title">
+                            <span>${escapeHtml(s.title)}</span>
+                            <span class="delete-session" onclick="event.stopPropagation();deleteSession('${s.id}')">×</span>
+                        </div>
+                        <div class="session-preview">${escapeHtml(s.preview)}</div>`;
+                    div.onclick = () => loadSession(s.id);
+                    list.appendChild(div);
+                }
+            } catch (e) { 
+                console.error('loadSessions:', e); 
+            }
+        }
+
+        async function createNewChat() {
+            if (!currentSystem) { 
+                alert('Please select a system first'); 
+                return; 
+            }
+            
+            try {
+                const res = await fetch(`${API_BASE}/api/sessions/${currentSystem}`, { 
+                    method: 'POST', 
+                    headers: { 'Content-Type': 'application/json' } 
+                });
+                const data = await res.json();
+                currentSessionId = data.session_id;
+                
+                document.getElementById('chatArea').innerHTML = `
+                    <div class="message assistant">
+                        <div class="message-content">
+                            <strong>${systemNames[currentSystem]} System</strong><br><br>
+                            New conversation started. Ask me anything!
+                        </div>
+                    </div>`;
+                document.getElementById('contextIndicator').style.display = 'none';
+                await loadSessions();
+            } catch (e) { 
+                console.error('createNewChat:', e); 
+            }
+        }
+
+        async function loadSession(sessionId) {
+            if (!currentSystem) return;
+            
+            try {
+                const res = await fetch(`${API_BASE}/api/sessions/${currentSystem}/${sessionId}`);
+                const data = await res.json();
+                currentSessionId = sessionId;
+
+                const area = document.getElementById('chatArea');
+                area.innerHTML = '';
+
+                if (!data.messages.length) {
+                    area.innerHTML = `
+                        <div class="message assistant">
+                            <div class="message-content">
+                                <strong>${systemNames[currentSystem]} System</strong><br><br>How may I assist you today?
+                            </div>
+                        </div>`;
+                    document.getElementById('contextIndicator').style.display = 'none';
+                } else {
+                    data.messages.forEach(m => addMessage(m.content, m.role, false));
+                    document.getElementById('contextIndicator').style.display = 'flex';
+                }
+                await loadSessions();
+            } catch (e) { 
+                console.error('loadSession:', e); 
+            }
+        }
+
+        async function deleteSession(sessionId) {
+            if (!confirm('Delete this conversation? This action cannot be undone.')) return;
+            
+            try {
+                await fetch(`${API_BASE}/api/sessions/${currentSystem}/${sessionId}`, { method: 'DELETE' });
+                sessionsCache[currentSystem] = sessionsCache[currentSystem].filter(s => s.id !== sessionId);
+                
+                if (currentSessionId === sessionId) {
+                    currentSessionId = null;
+                    document.getElementById('chatArea').innerHTML = `
+                        <div class="message assistant">
+                            <div class="message-content">Conversation deleted. Create a new chat to continue.</div>
+                        </div>`;
+                    document.getElementById('contextIndicator').style.display = 'none';
+                }
+                await loadSessions();
+                if (!sessionsCache[currentSystem].length) await createNewChat();
+            } catch (e) { 
+                console.error('deleteSession:', e); 
+            }
+        }
+
+        // Message Handling
+        function addMessage(text, sender, isLoading = false) {
+            const area = document.getElementById('chatArea');
+            const div = document.createElement('div');
+            div.className = `message ${sender}`;
+
+            const content = document.createElement('div');
+            content.className = 'message-content';
+
+            if (isLoading) {
+                content.innerHTML = '<span class="loading-spinner"></span> Processing...';
+            } else {
+                content.innerHTML = formatText(text);
+            }
+
+            div.appendChild(content);
+            area.appendChild(div);
+            area.scrollTop = area.scrollHeight;
+            return div;
+        }
+
+        // Streaming Question
+        async function sendQuestion() {
+            if (isProcessing || !currentSystem) {
+                if (!currentSystem) alert('Please select a system first');
+                return;
+            }
+
+            const input = document.getElementById('questionInput');
+            const question = input.value.trim();
+            if (!question) return;
+
+            addMessage(question, 'user');
+            input.value = '';
+            isProcessing = true;
+            document.getElementById('sendBtn').disabled = true;
+
+            // Create assistant message for streaming
+            const area = document.getElementById('chatArea');
+            const msgDiv = document.createElement('div');
+            msgDiv.className = 'message assistant';
+            const contentDiv = document.createElement('div');
+            contentDiv.className = 'message-content streaming-cursor';
+            msgDiv.appendChild(contentDiv);
+            area.appendChild(msgDiv);
+            area.scrollTop = area.scrollHeight;
+
+            let rawBuffer = '';
+
+            try {
+                const res = await fetch(`${API_BASE}/api/ask/stream`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        system: currentSystem,
+                        question: question,
+                        session_id: currentSessionId
+                    })
+                });
+
+                if (!res.ok) throw new Error(`HTTP ${res.status}`);
+
+                const reader = res.body.getReader();
+                const decoder = new TextDecoder();
+                let buffer = '';
+
+                while (true) {
+                    const { done, value } = await reader.read();
+                    if (done) break;
+
+                    buffer += decoder.decode(value, { stream: true });
+                    const lines = buffer.split('\n');
+                    buffer = lines.pop();
+
+                    for (const line of lines) {
+                        const trimmed = line.trim();
+                        if (!trimmed.startsWith('data: ')) continue;
+
+                        const jsonStr = trimmed.slice(6);
+                        try {
+                            const parsed = JSON.parse(jsonStr);
+
+                            if (parsed.error) {
+                                contentDiv.classList.remove('streaming-cursor');
+                                contentDiv.innerHTML = `<span style="color:#f56565">Error: ${escapeHtml(parsed.error)}</span>`;
+                                break;
+                            }
+
+                            if (parsed.done) {
+                                contentDiv.classList.remove('streaming-cursor');
+                                await loadSessions();
+                                document.getElementById('contextIndicator').style.display = 'flex';
+                                break;
+                            }
+
+                            if (parsed.token) {
+                                rawBuffer += parsed.token;
+                                contentDiv.innerHTML = formatText(rawBuffer);
+                                area.scrollTop = area.scrollHeight;
+                            }
+                        } catch (e) {
+                            console.warn('Parse error:', e);
+                        }
+                    }
+                }
+            } catch (err) {
+                contentDiv.classList.remove('streaming-cursor');
+                contentDiv.innerHTML = `<span style="color:#f56565">Error: Unable to connect to server. Please try again.</span>`;
+                console.error('Stream error:', err);
+            } finally {
+                isProcessing = false;
+                document.getElementById('sendBtn').disabled = false;
+                document.getElementById('questionInput').focus();
+            }
+        }
+
+        function askSuggestion(q) {
+            document.getElementById('questionInput').value = q;
+            sendQuestion();
+        }
+
+        function handleKeyPress(e) {
+            if (e.key === 'Enter' && !isProcessing) sendQuestion();
+        }
+
+        // Health Check
         async function checkHealth() {
             try {
-                const response = await fetch(`${API_BASE}/health`);
-                if (response.ok) {
+                const res = await fetch(`${API_BASE}/health`);
+                if (res.ok) {
                     document.getElementById('statusDot').style.background = '#48bb78';
                     document.getElementById('statusText').innerHTML = 'Online';
                 } else {
                     document.getElementById('statusDot').style.background = '#ed8936';
                     document.getElementById('statusText').innerHTML = 'Degraded';
                 }
-            } catch (error) {
+            } catch {
                 document.getElementById('statusDot').style.background = '#f56565';
                 document.getElementById('statusText').innerHTML = 'Offline';
             }
         }
 
-        // Auto-select legal system on load
-        setTimeout(() => {
-            selectSystem('legal');
-        }, 500);
-        
+        // Initialize
+        setTimeout(() => selectSystem('legal'), 500);
         checkHealth();
         setInterval(checkHealth, 30000);
     </script>
-<!-- Footer Credit -->
-<div style="padding: 16px 20px; border-top: 1px solid var(--border-color); margin-top: auto;">
-    <div style="font-size: 0.65rem; color: var(--text-tertiary); text-align: center;">
-        Developed by <strong style="color: var(--text-secondary);">Vansh Sharma</strong>
-    </div>
-</div>
-
 </body>
 </html>
